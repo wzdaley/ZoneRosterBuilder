@@ -88,6 +88,16 @@ Choose one origin. Mechanics are unchanged; only flavor is reskinned.
 
 ---
 
+## Commander Creation
+
+When creating your Commander:  
+- Start with the base stats of your chosen crew size.  
+- Apply your origin’s commander stat bonus.  
+- Add **3 points** to any stats (distributed as you choose).  
+- Take **one bonus item** from your allowed equipment lists or from Advanced Technology.  
+
+---
+
 ## Edges (Zone Traits)
 
 Mechanics unchanged; names reskinned for immersion.
@@ -144,14 +154,39 @@ Mechanics unchanged; names reskinned for immersion.
   - *Shielding UAV:* Once per turn: reduce Combat damage ≤4 to 0.  
   - *Targeting UAV:* +2 Combat for Ranged attacks beyond 3".  
 - **Anomaly Hop (Point-to-Point Teleporter):** As an action: move to any visible point.  
-- **HUD Visor (Heads-Up Display):** +2 Reaction to spot Hidden; roll an extra die and discard one on Reaction tests.  
+- **HUD Visor (Heads-Up Display):** +2 Reaction to spot Hidden; roll an extra die and discard one on Reaction tests.
 
 ---
 
 ## Secondary Agendas (Optional)
 
-If you want to add extra challenge and flavor to your Zone expedition, you may select a secondary agenda. These provide additional objectives and rewards. Mechanics are unchanged.
+If this is your first time venturing into the Zone, you may want to skip Secondary Agendas. This optional element increases difficulty but can also yield rewards as you explore the irradiated wastes and anomalies. It is likely it will take multiple expeditions to complete the Zone’s narrative arc, so it’s best to start simply.
 
-- **Rescue:** Find and reclaim a missing stalker.  
-- **Artifact (Tech):** Secure powerful anomalous tech deep in the Zone.  
-- **Biology:** Harvest samples from mutants or anomalies for
+The reasons for stalker crews to push deeper into the Zone are numerous. There are artifacts beyond imagination, resources that can aid survival back in the Cordon, and of course—answers. Answers to how the Zone came to be, and perhaps how to escape its grip. Some crews, however, have very specific reasons for undertaking their excursions. These reasons are more than idle curiosity; they are a necessity.
+
+If you wish to utilize Secondary Agendas, roll on the table below to assign your crew a unique additional goal. This may provide challenges and rewards throughout your exploration. If this is not your first time leading a crew into the Zone, the use of Secondary Agendas is encouraged, as they can serve as narrative connective tissue to previous expeditions and their failures.
+
+If you have played a previous campaign of Zone Station Zero (regardless of the outcome), and if you completed any parts of a Secondary Agenda without fully completing it, you may choose the same Secondary Agenda and attempt to pick up where you left off. Your crew retains the items you gained toward completion.
+
+| d12 | Secondary Agenda | Zone Reskin Description |
+|-----|------------------|-------------------------|
+| 1–2 | Rescue           | A member of your crew has gone missing in the depths of the Zone and must be retrieved. |
+| 3–4 | Artifact (Tech)  | Your crew is in desperate need of a powerful artifact rumored to exist deep in the Zone. |
+| 5–6 | Biology          | Your crew needs a specific biological sample from mutants or anomalies—perhaps for medicine, research, or darker purposes. |
+| 7–8 | Intel (Data)     | Your crew requires information hidden in old Soviet databanks deep within the Zone to solve a pressing problem. |
+| 9–10| Armaments        | Your crew is in grave danger, but weapons from the depths of the Zone may help even the odds. |
+| 11–12| Medicine        | Some of your crew are injured or ill and will soon perish. Only rare medicines hidden in the Zone can save them. |
+
+---
+
+## Sample Crew
+
+A player builds a **Freedom Expedition (Exploration)** with four elite members: Soldier, Medical Officer, Scientist, and Scout.  
+
+- Their **Commander** invests bonus points into Life, Reaction, and Combat.  
+- They equip a mix of **General** and **Scientific gear**.  
+- For their **Edge**, they select **Camaraderie (Harmonious Culture)**, which allows rerolls when working shoulder‑to‑shoulder.  
+
+This crew is tough, balanced, and thematically grounded in the Zone, while mechanically identical to the original ruleset.  
+
+---
