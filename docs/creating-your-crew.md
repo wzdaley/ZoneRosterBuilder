@@ -6,12 +6,12 @@ In the Zone, survival isn’t about lone wolves—it’s about the crew you trus
 
 ## Steps to Creating Your Crew
 
-1. **Choose your crew size**: Eight, six, or four members (stats unchanged).  
+1. **Choose your crew size**: Eight, six, or four members.  
 2. **Choose your Zone origin**: Your faction or background (maps directly to Ship Type).  
 3. **Create your commander**: Apply the same stat bonus and ability from your origin.  
 4. **Choose your squad**: Select roles from those allowed by your origin.  
 5. **Select your edge**: A Zone-themed trait with identical mechanical effects.  
-6. **Assign your gear**: Choose items from the same categories, reskinned as Zone kit.  
+6. **Assign your gear**: Each crew member begins with one item. Your commander receives one additional item, which may be chosen from your allowed categories or from Advanced Technology.  
 
 ---
 
@@ -154,19 +154,19 @@ Mechanics unchanged; names reskinned for immersion.
   - *Shielding UAV:* Once per turn: reduce Combat damage ≤4 to 0.  
   - *Targeting UAV:* +2 Combat for Ranged attacks beyond 3".  
 - **Anomaly Hop (Point-to-Point Teleporter):** As an action: move to any visible point.  
-- **HUD Visor (Heads-Up Display):** +2 Reaction to spot Hidden; roll an extra die and discard one on Reaction tests.
+- **HUD Visor (Heads-Up Display):** +2 Reaction to spot Hidden; roll an extra die and discard one on Reaction tests.  
 
 ---
 
 ## Secondary Agendas (Optional)
 
-If this is your first time venturing into the Zone, you may want to skip Secondary Agendas. This optional element increases difficulty but can also yield rewards as you explore the irradiated wastes and anomalies. It is likely it will take multiple expeditions to complete the Zone’s narrative arc, so it’s best to start simply.
+If this is your first time venturing into the Zone, you may want to skip Secondary Agendas. This optional element increases difficulty but can also yield rewards as you explore irradiated wastes and anomalies. It is likely it will take multiple expeditions to complete the Zone’s narrative arc, so it’s best to start simply.
 
-The reasons for stalker crews to push deeper into the Zone are numerous. There are artifacts beyond imagination, resources that can aid survival back in the Cordon, and of course—answers. Answers to how the Zone came to be, and perhaps how to escape its grip. Some crews, however, have very specific reasons for undertaking their excursions. These reasons are more than idle curiosity; they are a necessity.
+The reasons for stalker crews to push deeper into the Zone are numerous. There are artifacts beyond imagination, resources that can aid survival back in the Cordon, and of course—answers. Some crews, however, have very specific reasons for undertaking their excursions. These reasons are more than idle curiosity; they are a necessity.
 
 If you wish to utilize Secondary Agendas, roll on the table below to assign your crew a unique additional goal. This may provide challenges and rewards throughout your exploration. If this is not your first time leading a crew into the Zone, the use of Secondary Agendas is encouraged, as they can serve as narrative connective tissue to previous expeditions and their failures.
 
-If you have played a previous campaign of Zone Station Zero (regardless of the outcome), and if you completed any parts of a Secondary Agenda without fully completing it, you may choose the same Secondary Agenda and attempt to pick up where you left off. Your crew retains the items you gained toward completion.
+If you have played a previous campaign (regardless of the outcome), and if you completed any parts of a Secondary Agenda without fully completing it, you may choose the same Secondary Agenda and attempt to pick up where you left off. Your crew retains the items you gained toward completion.
 
 | d12 | Secondary Agenda | Zone Reskin Description |
 |-----|------------------|-------------------------|
@@ -188,5 +188,3 @@ A player builds a **Freedom Expedition (Exploration)** with four elite members: 
 - For their **Edge**, they select **Camaraderie (Harmonious Culture)**, which allows rerolls when working shoulder‑to‑shoulder.  
 
 This crew is tough, balanced, and thematically grounded in the Zone, while mechanically identical to the original ruleset.  
-
----
