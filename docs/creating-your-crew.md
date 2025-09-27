@@ -148,4 +148,10 @@ Mechanics unchanged; names reskinned for immersion.
 
 ---
 
-## Secondary
+## Secondary Agendas (Optional)
+
+If you want to add extra challenge and flavor to your Zone expedition, you may select a secondary agenda. These provide additional objectives and rewards. Mechanics are unchanged.
+
+- **Rescue:** Find and reclaim a missing stalker.  
+- **Artifact (Tech):** Secure powerful anomalous tech deep in the Zone.  
+- **Biology:** Harvest samples from mutants or anomalies for
