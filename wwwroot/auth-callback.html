@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>OAuth Callback</title></head>
+<body>
+<script>
+  // Extract ?code= from URL
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get("code");
+
+  // Normally you'd exchange this code for an access token using your client_secret.
+  // For security, that exchange should happen via a tiny backend proxy (Azure Function, Netlify Function, etc.).
+  // Then redirect back to the app with the token.
+  window.opener.postMessage({ code: code }, "*");
+  window.close();
+</script>
+</body>
+</html>
