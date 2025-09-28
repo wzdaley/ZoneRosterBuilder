@@ -1,7 +1,7 @@
 import fs from "fs";
 import yaml from "js-yaml";
 
-// Load roster config
+// Load config
 const config = yaml.load(
   fs.readFileSync(".github/roster-config.yml", "utf8")
 ) as any;
@@ -12,36 +12,37 @@ let template = fs.readFileSync(
   "utf8"
 );
 
-// Build arrays
-const origins = Object.keys(config.origins || {})
-  .map(o => `  - ${o}`)
-  .join("\n");
+// Helper to format arrays as YAML
+function toYamlArray(items: string[]): string {
+  return items.map(i => `  - ${i}`).join("\n");
+}
 
+// Build arrays
+const origins = Object.keys(config.origins || []);
 const roles = [
   ...new Set(
     Object.values(config.origins || {}).flatMap((o: any) => o.roles || [])
   ),
-]
-  .sort()
-  .map(r => `  - ${r}`)
-  .join("\n");
-
-const gear = [
+].sort();
+const weapons = [
+  ...new Set(
+    Object.values(config.origins || {}).flatMap((o: any) => o.weapons || [])
+  ),
+].sort();
+const equipment = [
   ...new Set(
     Object.values(config.origins || {}).flatMap((o: any) => o.gear || [])
   ),
-]
-  .sort()
-  .map(g => `  - ${g}`)
-  .join("\n");
+].sort();
 
 // Replace placeholders
 template = template
-  .replace("{{origins}}", origins)
-  .replace("{{roles}}", roles)
-  .replace("{{gear}}", gear);
+  .replace("{{origins}}", toYamlArray(origins))
+  .replace("{{roles}}", toYamlArray(roles))
+  .replace("{{weapons}}", toYamlArray(weapons))
+  .replace("{{equipment}}", toYamlArray(equipment));
 
-// Write final Issue Form
+// Write final roster.yml
 fs.writeFileSync(".github/ISSUE_TEMPLATE/roster.yml", template);
 
 console.log("✅ roster.yml generated successfully");
