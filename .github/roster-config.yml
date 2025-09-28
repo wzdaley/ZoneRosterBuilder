@@ -1,19 +1,107 @@
 origins:
   Duty Combat Detachment:
     roles: [Soldier, Veteran Soldier, Medical Officer, Engineer, Scientist, Scout]
-    gear: [General, Advanced Weaponry]
+    gear:
+      - Sidearm (General)
+      - Melee Weapon (General)
+      - Armored Coat (General)
+      - Detector (General)
+      - Medkit Satchel (General)
+      - Artifact-Edge Blade (Advanced Weaponry)
+      - Gauss Rig (Advanced Weaponry)
+      - Heavy Belt-Fed (Advanced Weaponry)
+      - Sledge Melee (Advanced Weaponry)
+
   Ecologists’ Mobile Lab:
     roles: [Scientist, Lead Scientist, Medical Officer, Engineer, Soldier, Scout]
-    gear: [General, Scientific Gear]
+    gear:
+      - Sidearm (General)
+      - Melee Weapon (General)
+      - Armored Coat (General)
+      - Detector (General)
+      - Medkit Satchel (General)
+      - Veles Detector (Scientific Gear)
+      - Chem-Pro Suit (Scientific Gear)
+      - Prototype Lab Kit (Scientific Gear)
+      - Field Mini-Lab (Scientific Gear)
+
   Medical Relief Caravan:
     roles: [Medical Officer, Senior Physician, Soldier, Engineer, Scientist, Scout]
-    gear: [General, Medical]
+    gear:
+      - Sidearm (General)
+      - Melee Weapon (General)
+      - Armored Coat (General)
+      - Detector (General)
+      - Medkit Satchel (General)
+      - Anti-Rad Meds (Medical)
+      - Stabilization Module (Medical)
+      - Protective Suit (Medical)
+      - First-Aid Patch (Medical)
+      - Combat Stim (Medical)
+
   Trader-Hauler Convoy:
     roles: [Medical Officer, Soldier, Engineer, Scout]
-    gear: [General, Medical, Advanced Weaponry, Scientific Gear, Advanced Technology]
+    gear:
+      - Sidearm (General)
+      - Melee Weapon (General)
+      - Armored Coat (General)
+      - Detector (General)
+      - Medkit Satchel (General)
+      - Anti-Rad Meds (Medical)
+      - Stabilization Module (Medical)
+      - Protective Suit (Medical)
+      - First-Aid Patch (Medical)
+      - Combat Stim (Medical)
+      - Artifact-Edge Blade (Advanced Weaponry)
+      - Gauss Rig (Advanced Weaponry)
+      - Heavy Belt-Fed (Advanced Weaponry)
+      - Sledge Melee (Advanced Weaponry)
+      - Veles Detector (Scientific Gear)
+      - Chem-Pro Suit (Scientific Gear)
+      - Prototype Lab Kit (Scientific Gear)
+      - Field Mini-Lab (Scientific Gear)
+      - Exo-Plates (Advanced Technology)
+      - Climbing Rig (Advanced Technology)
+      - Drone System (Advanced Technology)
+      - Anomaly Hop (Advanced Technology)
+      - HUD Visor (Advanced Technology)
+
   Bandit/Mercenary Outfit:
     roles: [Medical Officer, Soldier, Engineer, Scientist, Scout, Ace Scout]
-    gear: [General, Medical, Advanced Weaponry, Scientific Gear]   # no Advanced Tech
+    gear:
+      - Sidearm (General)
+      - Melee Weapon (General)
+      - Armored Coat (General)
+      - Detector (General)
+      - Medkit Satchel (General)
+      - Anti-Rad Meds (Medical)
+      - Stabilization Module (Medical)
+      - Protective Suit (Medical)
+      - First-Aid Patch (Medical)
+      - Combat Stim (Medical)
+      - Artifact-Edge Blade (Advanced Weaponry)
+      - Gauss Rig (Advanced Weaponry)
+      - Heavy Belt-Fed (Advanced Weaponry)
+      - Sledge Melee (Advanced Weaponry)
+      - Veles Detector (Scientific Gear)
+      - Chem-Pro Suit (Scientific Gear)
+      - Prototype Lab Kit (Scientific Gear)
+      - Field Mini-Lab (Scientific Gear)
+
   Freedom Expedition:
     roles: [Medical Officer, Soldier, Engineer, Scientist, Scout, Chief Engineer, Ace Scout]
-    gear: [General, Medical, Scientific Gear]
+    gear:
+      - Sidearm (General)
+      - Melee Weapon (General)
+      - Armored Coat (General)
+      - Detector (General)
+      - Medkit Satchel (General)
+      - Anti-Rad Meds (Medical)
+      - Stabilization Module (Medical)
+      - Protective Suit (Medical)
+      - First-Aid Patch (Medical)
+      - Combat Stim (Medical)
+      - Veles Detector (Scientific Gear)
+      - Chem-Pro Suit (Scientific Gear)
+      - Prototype Lab Kit (Scientific Gear)
+      - Field Mini-Lab (Scientific Gear)
