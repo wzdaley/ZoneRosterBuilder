@@ -167,4 +167,3 @@ body:
       options: {{roles}}
     validations:
       required: true
-  - type: dropdown
