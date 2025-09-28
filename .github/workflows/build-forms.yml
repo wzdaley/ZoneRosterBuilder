@@ -5,10 +5,10 @@ on:
     paths:
       - .github/roster-config.yml
       - .github/ISSUE_TEMPLATE/_roster-template.yml
-  workflow_dispatch:   # 👈 lets you run it manually from the Actions tab
+  workflow_dispatch:
 
 permissions:
-  contents: write      # 👈 required so the workflow can commit/push changes
+  contents: write
 
 jobs:
   build-form:
@@ -16,24 +16,31 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install dependencies
+      - name: Install yq (Go-based)
         run: |
-          sudo apt-get update
-          sudo apt-get install -y jq yq
+          wget https://github.com/mikefarah/yq/releases/download/v4.44.1/yq_linux_amd64 -O /usr/bin/yq
+          chmod +x /usr/bin/yq
 
       - name: Generate roster.yml
         run: |
-          # Extract origins from config
-          origins=$(yq -o=json '.origins | keys' .github/roster-config.yml | jq -r '.[]' | sed 's/^/  - /')
-
-          # Flatten roles and gear across all origins (can refine later per-origin)
-          roles=$(yq -o=json '.origins[].roles[]' .github/roster-config.yml | sort -u | jq -r '.' | sed 's/^/  - /')
-          gear=$(yq -o=json '.origins[].gear[]' .github/roster-config.yml | sort -u | jq -r '.' | sed 's/^/  - /')
+          # Extract origins, roles, gear
+          origins=$(yq '.origins | keys' -o=json .github/roster-config.yml | jq -r '.[]' | sed 's/^/  - /')
+          roles=$(yq '.origins[].roles[]' -o=json .github/roster-config.yml | jq -r '.' | sort -u | sed 's/^/  - /')
+          gear=$(yq '.origins[].gear[]' -o=json .github/roster-config.yml | jq -r '.' | sort -u | sed 's/^/  - /')
 
           # Replace placeholders in template with arrays
-          sed -e "/{{origins}}/{ r /dev/stdin d }" <(echo "$origins") .github/ISSUE_TEMPLATE/_roster-template.yml \
-          | sed -e "/{{roles}}/{ r /dev/stdin d }" <(echo "$roles") \
-          | sed -e "/{{gear}}/{ r /dev/stdin d }" <(echo "$gear") \
+          sed "/{{origins}}/ {
+              r /dev/stdin
+              d
+          }" <(echo "$origins") .github/ISSUE_TEMPLATE/_roster-template.yml \
+          | sed "/{{roles}}/ {
+              r /dev/stdin
+              d
+          }" <(echo "$roles") \
+          | sed "/{{gear}}/ {
+              r /dev/stdin
+              d
+          }" <(echo "$gear") \
           > .github/ISSUE_TEMPLATE/roster.yml
 
       - name: Commit updated form
@@ -42,5 +49,5 @@ jobs:
           git config user.email "actions@github.com"
           git add .github/ISSUE_TEMPLATE/roster.yml
           git commit -m "Update roster form with dynamic dropdowns" || echo "No changes to commit"
-          git pull --rebase origin main   # 👈 ensures fast-forward before pushing
+          git pull --rebase origin main
           git push
