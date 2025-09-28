@@ -20,24 +20,6 @@ body:
       required: true
 
   - type: dropdown
-    id: crew-role-1
-    attributes:
-      label: Crew Member 1 Role
-      options: {{roles}}
-    validations:
-      required: true
-
-  - type: dropdown
-    id: gear-1
-    attributes:
-      label: Gear for Crew Member 1
-      options: {{gear}}
-    validations:
-      required: true
-
-  # Repeat crew-role-X and gear-X for as many members as needed
-
-  - type: dropdown
     id: edge
     attributes:
       label: Edge
@@ -58,6 +40,39 @@ body:
         - Parasitic Takeover
     validations:
       required: true
+
+  # Crew slots (8 max)
+  - type: dropdown
+    id: crew-role-1
+    attributes:
+      label: Crew Member 1 Role
+      options: {{roles}}
+    validations:
+      required: true
+  - type: dropdown
+    id: gear-1
+    attributes:
+      label: Gear for Crew Member 1
+      options: {{gear}}
+    validations:
+      required: true
+
+  - type: dropdown
+    id: crew-role-2
+    attributes:
+      label: Crew Member 2 Role
+      options: {{roles}}
+    validations:
+      required: true
+  - type: dropdown
+    id: gear-2
+    attributes:
+      label: Gear for Crew Member 2
+      options: {{gear}}
+    validations:
+      required: true
+
+  # …repeat crew-role-X and gear-X up to 8
 
   - type: dropdown
     id: secondary-agenda
