@@ -1,0 +1,19 @@
+origins:
+  Duty Combat Detachment:
+    roles: [Soldier, Veteran Soldier, Medical Officer, Engineer, Scientist, Scout]
+    gear: [General, Advanced Weaponry]
+  Ecologists’ Mobile Lab:
+    roles: [Scientist, Lead Scientist, Medical Officer, Engineer, Soldier, Scout]
+    gear: [General, Scientific Gear]
+  Medical Relief Caravan:
+    roles: [Medical Officer, Senior Physician, Soldier, Engineer, Scientist, Scout]
+    gear: [General, Medical]
+  Trader-Hauler Convoy:
+    roles: [Medical Officer, Soldier, Engineer, Scout]
+    gear: [General, Medical, Advanced Weaponry, Scientific Gear, Advanced Technology]
+  Bandit/Mercenary Outfit:
+    roles: [Medical Officer, Soldier, Engineer, Scientist, Scout, Ace Scout]
+    gear: [General, Medical, Advanced Weaponry, Scientific Gear]   # no Advanced Tech
+  Freedom Expedition:
+    roles: [Medical Officer, Soldier, Engineer, Scientist, Scout, Chief Engineer, Ace Scout]
+    gear: [General, Medical, Scientific Gear]
