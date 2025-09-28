@@ -25,17 +25,14 @@ jobs:
           node-version: 20
           cache: "npm"
 
-      # Clear any bad cache and force registry
       - name: Clean npm cache
         run: npm cache clean --force
 
       - name: Force npm registry
         run: npm config set registry https://registry.npmjs.org/
 
-      # Retry install to avoid EINTEGRITY
-      - name: Install dependencies (retry logic)
-        run: |
-          npm ci || (echo "First attempt failed, retrying..." && npm ci)
+      - name: Install dependencies
+        run: npm ci || npm install
 
       - name: Generate roster.yml
         run: npm run build-form
