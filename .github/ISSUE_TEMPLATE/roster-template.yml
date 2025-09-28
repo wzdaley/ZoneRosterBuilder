@@ -1,0 +1,73 @@
+name: Build a Zone Roster
+description: Guided form to create your crew roster
+title: "[Roster]: <Crew Name>"
+labels: ["roster"]
+body:
+  - type: input
+    id: crew-name
+    attributes:
+      label: Crew Name
+      placeholder: e.g. "The Iron Dogs"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: origin
+    attributes:
+      label: Zone Origin
+      options: {{origins}}
+    validations:
+      required: true
+
+  - type: dropdown
+    id: crew-role-1
+    attributes:
+      label: Crew Member 1 Role
+      options: {{roles}}
+    validations:
+      required: true
+
+  - type: dropdown
+    id: gear-1
+    attributes:
+      label: Gear for Crew Member 1
+      options: {{gear}}
+    validations:
+      required: true
+
+  # Repeat crew-role-X and gear-X for as many members as needed
+
+  - type: dropdown
+    id: edge
+    attributes:
+      label: Edge
+      options:
+        - SEVA Brigade
+        - Artifact Attunement
+        - Psy Resonance
+        - Telekinetic Drift
+        - Synthetic Bodies
+        - War-Born
+        - Linked Comms
+        - Camaraderie
+        - Brutal Pragmatists
+        - Smuggler Network
+        - Mimics of the Zone
+        - Time Anomalies
+        - Chem-Dosed
+        - Parasitic Takeover
+    validations:
+      required: true
+
+  - type: dropdown
+    id: secondary-agenda
+    attributes:
+      label: Secondary Agenda (Optional)
+      options:
+        - None
+        - Rescue
+        - Artifact (Tech)
+        - Biology
+        - Intel (Data)
+        - Armaments
+        - Medicine
