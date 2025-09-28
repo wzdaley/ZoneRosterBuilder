@@ -1,56 +1,153 @@
-name: Save Player Roster
+name: Build a Zone Roster
+description: Guided form to create your crew roster
+title: "[Roster]: <Crew Name>"
+labels: ["roster"]
 
-on:
-  issues:
-    types: [opened]
+body:
+  - type: input
+    id: crew-name
+    attributes:
+      label: Crew Name
+      placeholder: e.g. "The Iron Dogs"
+    validations:
+      required: true
 
-permissions:
-  contents: write
+  - type: dropdown
+    id: campaign
+    attributes:
+      label: Campaign
+      options:
+        - CordonRun
+        - DeadCity
+        - RedForest
+    validations:
+      required: true
 
-jobs:
-  save-roster:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+  - type: dropdown
+    id: origin
+    attributes:
+      label: Zone Origin
+      options: {{origins}}
+    validations:
+      required: true
 
-      - name: Generate Markdown roster
-        run: |
-          crew_name=$(jq -r '.issue.title | capture("\
+  - type: dropdown
+    id: edge
+    attributes:
+      label: Edge
+      options: {{edges}}
+    validations:
+      required: true
 
-\[Roster\\]
+  - type: markdown
+    attributes:
+      value: "## 👥 Crew Members"
 
-: (?<val>.*)") | .val' $GITHUB_EVENT_PATH)
-          campaign=$(jq -r '.issue.body | capture("Campaign\\s*\\n\\n(?<val>.*)\\n") | .val' $GITHUB_EVENT_PATH)
-          origin=$(jq -r '.issue.body | capture("Zone Origin\\s*\\n\\n(?<val>.*)\\n") | .val' $GITHUB_EVENT_PATH)
-          edge=$(jq -r '.issue.body | capture("Edge\\s*\\n\\n(?<val>.*)\\n") | .val' $GITHUB_EVENT_PATH)
-          agenda=$(jq -r '.issue.body | capture("Secondary Agenda.*\\n\\n(?<val>.*)\\n") | .val' $GITHUB_EVENT_PATH)
+  # Crew Members (8 total, each with Role + Weapon)
+  - type: dropdown
+    id: crew-role-1
+    attributes:
+      label: Crew Member 1 Role
+      options: {{roles}}
+    validations:
+      required: true
+  - type: dropdown
+    id: weapon-1
+    attributes:
+      label: Crew Member 1 Weapon
+      options: {{weapons}}
+    validations:
+      required: true
 
-          outdir="campaigns/${campaign}"
-          mkdir -p "$outdir"
-          outfile="${outdir}/${crew_name// /-}-roster.md"
+  - type: dropdown
+    id: crew-role-2
+    attributes:
+      label: Crew Member 2 Role
+      options: {{roles}}
+    validations:
+      required: true
+  - type: dropdown
+    id: weapon-2
+    attributes:
+      label: Crew Member 2 Weapon
+      options: {{weapons}}
+    validations:
+      required: true
 
-          {
-            echo "# 📋 Zone Roster: ${crew_name}"
-            echo
-            echo "**Campaign:** ${campaign}  "
-            echo "**Origin:** ${origin}  "
-            echo "**Edge:** ${edge}  "
-            echo "**Secondary Agenda:** ${agenda}"
-            echo
-            echo "---"
-            echo
-            echo "## 👥 Crew Members"
-            echo
-            echo "| # | Role | Weapon | Equipment |"
-            echo "|---|------|--------|-----------|"
+  # …repeat Role + Weapon for Crew Members 3–8
 
-            # (loop through crew members here, as in your script)
-          } > "$outfile"
+  - type: markdown
+    attributes:
+      value: "## 🎒 Shared Equipment Pool (3 total for the whole crew)"
 
-      - name: Commit roster file
-        run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git add campaigns/
-          git commit -m "Add roster for ${crew_name}" || echo "No changes to commit"
-          git push
+  # Equipment Slot 1
+  - type: dropdown
+    id: equipment-1
+    attributes:
+      label: Equipment Slot 1
+      options: {{equipment}}
+    validations:
+      required: false
+  - type: dropdown
+    id: equipment-1-owner
+    attributes:
+      label: Who carries Equipment Slot 1?
+      options:
+        - Crew Member 1
+        - Crew Member 2
+        - Crew Member 3
+        - Crew Member 4
+        - Crew Member 5
+        - Crew Member 6
+        - Crew Member 7
+        - Crew Member 8
+    validations:
+      required: false
+
+  # Equipment Slot 2
+  - type: dropdown
+    id: equipment-2
+    attributes:
+      label: Equipment Slot 2
+      options: {{equipment}}
+    validations:
+      required: false
+  - type: dropdown
+    id: equipment-2-owner
+    attributes:
+      label: Who carries Equipment Slot 2?
+      options:
+        - Crew Member 1
+        - Crew Member 2
+        - Crew Member 3
+        - Crew Member 4
+        - Crew Member 5
+        - Crew Member 6
+        - Crew Member 7
+        - Crew Member 8
+    validations:
+      required: false
+
+  # Equipment Slot 3
+  - type: dropdown
+    id: equipment-3
+    attributes:
+      label: Equipment Slot 3
+      options: {{equipment}}
+    validations:
+      required: false
+  - type: dropdown
+    id: equipment-3-owner
+    attributes:
+      label: Who carries Equipment Slot 3?
+      options:
+        - Crew Member 1
+        - Crew Member 2
+        - Crew Member 3
+        - Crew Member 4
+        - Crew Member 5
+        - Crew Member 6
+        - Crew Member 7
+        - Crew Member 8
+    validations:
+      required: false
