@@ -23,16 +23,19 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
+          cache: "npm"
 
-      # Fix for EINTEGRITY / corrupted tarballs
+      # Clear any bad cache and force registry
       - name: Clean npm cache
         run: npm cache clean --force
 
       - name: Force npm registry
         run: npm config set registry https://registry.npmjs.org/
 
-      - name: Install dependencies
-        run: npm ci
+      # Retry install to avoid EINTEGRITY
+      - name: Install dependencies (retry logic)
+        run: |
+          npm ci || (echo "First attempt failed, retrying..." && npm ci)
 
       - name: Generate roster.yml
         run: npm run build-form
