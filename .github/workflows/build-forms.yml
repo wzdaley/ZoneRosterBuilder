@@ -5,7 +5,10 @@ on:
     paths:
       - .github/roster-config.yml
       - .github/ISSUE_TEMPLATE/_roster-template.yml
-  workflow_dispatch:
+  workflow_dispatch:   # 👈 lets you run it manually from the Actions tab
+
+permissions:
+  contents: write      # 👈 required so the workflow can commit/push changes
 
 jobs:
   build-form:
@@ -20,14 +23,14 @@ jobs:
 
       - name: Generate roster.yml
         run: |
-          # Parse origins from config
+          # Extract origins from config
           origins=$(yq -o=json '.origins | keys' .github/roster-config.yml | jq -r '.[]' | sed 's/^/  - /')
-          
-          # For now, just flatten roles/gear for all origins (you can refine per-origin later)
+
+          # Flatten roles and gear across all origins (can refine later per-origin)
           roles=$(yq -o=json '.origins[].roles[]' .github/roster-config.yml | sort -u | jq -r '.' | sed 's/^/  - /')
           gear=$(yq -o=json '.origins[].gear[]' .github/roster-config.yml | sort -u | jq -r '.' | sed 's/^/  - /')
 
-          # Replace placeholders in template
+          # Replace placeholders in template with arrays
           sed -e "/{{origins}}/{
             r /dev/stdin
             d
