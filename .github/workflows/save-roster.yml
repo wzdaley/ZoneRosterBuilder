@@ -1,0 +1,84 @@
+name: Save Player Roster
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+
+jobs:
+  save-roster:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Generate Markdown roster
+        run: |
+          crew_name=$(jq -r '.issue.title | capture("\
+
+\[Roster\\]
+
+: (?<val>.*)") | .val' $GITHUB_EVENT_PATH)
+          campaign=$(jq -r '.issue.body | capture("Campaign\\s*\\n\\n(?<val>.*)\\n") | .val' $GITHUB_EVENT_PATH)
+          origin=$(jq -r '.issue.body | capture("Zone Origin\\s*\\n\\n(?<val>.*)\\n") | .val' $GITHUB_EVENT_PATH)
+          edge=$(jq -r '.issue.body | capture("Edge\\s*\\n\\n(?<val>.*)\\n") | .val' $GITHUB_EVENT_PATH)
+          agenda=$(jq -r '.issue.body | capture("Secondary Agenda.*\\n\\n(?<val>.*)\\n") | .val' $GITHUB_EVENT_PATH)
+
+          outdir="campaigns/${campaign}"
+          mkdir -p "$outdir"
+          outfile="${outdir}/${crew_name// /-}-roster.md"
+
+          {
+            echo "# 📋 Zone Roster: ${crew_name}"
+            echo
+            echo "**Campaign:** ${campaign}  "
+            echo "**Origin:** ${origin}  "
+            echo "**Edge:** ${edge}  "
+            echo "**Secondary Agenda:** ${agenda}"
+            echo
+            echo "---"
+            echo
+            echo "## 👥 Crew Members"
+            echo
+            echo "| # | Role | Weapon | Equipment |"
+            echo "|---|------|--------|-----------|"
+
+            # Collect equipment assignments
+            eq1=$(jq -r '.issue.body | capture("Equipment Slot 1\\s*\\n\\n(?<val>.*)\\n") | .val' $GITHUB_EVENT_PATH 2>/dev/null || echo "")
+            eq1_owner=$(jq -r '.issue.body | capture("Who carries Equipment Slot 1\\?\\s*\\n\\n(?<val>.*)\\n") | .val' $GITHUB_EVENT_PATH 2>/dev/null || echo "")
+            eq2=$(jq -r '.issue.body | capture("Equipment Slot 2\\s*\\n\\n(?<val>.*)\\n") | .val' $GITHUB_EVENT_PATH 2>/dev/null || echo "")
+            eq2_owner=$(jq -r '.issue.body | capture("Who carries Equipment Slot 2\\?\\s*\\n\\n(?<val>.*)\\n") | .val' $GITHUB_EVENT_PATH 2>/dev/null || echo "")
+            eq3=$(jq -r '.issue.body | capture("Equipment Slot 3\\s*\\n\\n(?<val>.*)\\n") | .val' $GITHUB_EVENT_PATH 2>/dev/null || echo "")
+            eq3_owner=$(jq -r '.issue.body | capture("Who carries Equipment Slot 3\\?\\s*\\n\\n(?<val>.*)\\n") | .val' $GITHUB_EVENT_PATH 2>/dev/null || echo "")
+
+            # Loop through crew members
+            for i in $(seq 1 8); do
+              role=$(jq -r --arg i "$i" '.issue.body | capture("Crew Member \($i) Role\\s*\\n\\n(?<val>.*)\\n") | .val' $GITHUB_EVENT_PATH 2>/dev/null || echo "")
+              weapon=$(jq -r --arg i "$i" '.issue.body | capture("Crew Member \($i) Weapon\\s*\\n\\n(?<val>.*)\\n") | .val' $GITHUB_EVENT_PATH 2>/dev/null || echo "")
+
+              # Assign equipment if this member is listed as owner
+              eqs=""
+              [ "$eq1_owner" = "Crew Member $i" ] && eqs="$eqs $eq1"
+              [ "$eq2_owner" = "Crew Member $i" ] && eqs="$eqs $eq2"
+              [ "$eq3_owner" = "Crew Member $i" ] && eqs="$eqs $eq3"
+
+              echo "| $i | $role | $weapon | ${eqs:-} |"
+            done
+
+            echo
+            echo "---"
+            echo
+            echo "## 🗂 Notes"
+            echo "- **Origin Traits:** (fill in from rulebook)"
+            echo "- **Edge Effect:** (fill in from rulebook)"
+            echo "- **Agenda:** (fill in from rulebook)"
+          } > "$outfile"
+
+      - name: Commit roster file
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add campaigns/
+          git commit -m "Add roster for ${crew_name}" || echo "No changes to commit"
+          git push
