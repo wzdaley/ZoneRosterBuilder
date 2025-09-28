@@ -1,0 +1,85 @@
+@page "/login"
+
+<h3>Login with GitHub</h3>
+
+@if (string.IsNullOrEmpty(UserCode))
+{
+    <button @onclick="StartLogin">Start Login</button>
+}
+else
+{
+    <p>Go to <a href="@VerificationUri" target="_blank">@VerificationUri</a> and enter code:</p>
+    <h2>@UserCode</h2>
+    <p>Waiting for authorization...</p>
+}
+
+@code {
+    string UserCode;
+    string VerificationUri;
+    string DeviceCode;
+    string AccessToken;
+
+    async Task StartLogin()
+    {
+        using var http = new HttpClient();
+        var values = new Dictionary<string, string>
+        {
+            { "client_id", "Ov23liBph0qDNAAkNZqm" }, // your OAuth App client_id
+            { "scope", "repo" }
+        };
+        var content = new FormUrlEncodedContent(values);
+        var response = await http.PostAsync("https://github.com/login/device/code", content);
+        var json = await response.Content.ReadAsStringAsync();
+        var data = System.Text.Json.JsonSerializer.Deserialize<DeviceCodeResponse>(json);
+
+        UserCode = data.user_code;
+        VerificationUri = data.verification_uri;
+        DeviceCode = data.device_code;
+
+        _ = PollForToken(data.device_code, data.interval);
+    }
+
+    async Task PollForToken(string deviceCode, int interval)
+    {
+        using var http = new HttpClient();
+        while (string.IsNullOrEmpty(AccessToken))
+        {
+            var values = new Dictionary<string, string>
+            {
+                { "client_id", "Ov23liBph0qDNAAkNZqm" },
+                { "device_code", deviceCode },
+                { "grant_type", "urn:ietf:params:oauth:grant-type:device_code" }
+            };
+            var content = new FormUrlEncodedContent(values);
+            var response = await http.PostAsync("https://github.com/login/oauth/access_token", content);
+            var json = await response.Content.ReadAsStringAsync();
+
+            if (json.Contains("access_token"))
+            {
+                var token = System.Text.Json.JsonSerializer.Deserialize<TokenResponse>(json);
+                AccessToken = token.access_token;
+                // Save token in localStorage for later use
+                await Blazored.LocalStorage.LocalStorageExtensions.SetItemAsync(
+                    new Blazored.LocalStorage.LocalStorageService(), "gh_token", AccessToken);
+                break;
+            }
+            await Task.Delay(interval * 1000);
+        }
+    }
+
+    public class DeviceCodeResponse
+    {
+        public string device_code { get; set; }
+        public string user_code { get; set; }
+        public string verification_uri { get; set; }
+        public int expires_in { get; set; }
+        public int interval { get; set; }
+    }
+
+    public class TokenResponse
+    {
+        public string access_token { get; set; }
+        public string token_type { get; set; }
+        public string scope { get; set; }
+    }
+}
