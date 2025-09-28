@@ -22,10 +22,10 @@ jobs:
           node-version: 20
 
       - name: Install deps
-        run: npm install js-yaml ts-node
+        run: npm ci
 
       - name: Generate roster.yml
-        run: npx ts-node scripts/build-form.ts
+        run: npm run build-form
 
       - name: Commit updated form
         run: |
