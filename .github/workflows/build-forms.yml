@@ -1,0 +1,25 @@
+name: Build Dynamic Roster Form
+on:
+  push:
+    paths:
+      - .github/roster-config.yml
+      - .github/ISSUE_TEMPLATE/roster-template.yml
+
+jobs:
+  build-form:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Populate dropdowns
+        uses: ShaMan123/gha-form-dropdown-options@v1
+        with:
+          template: .github/ISSUE_TEMPLATE/roster-template.yml
+          config: .github/roster-config.yml
+          output: .github/ISSUE_TEMPLATE/roster.yml
+      - name: Commit updated form
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add .github/ISSUE_TEMPLATE/roster.yml
+          git commit -m "Update roster form with dynamic dropdowns"
+          git push
