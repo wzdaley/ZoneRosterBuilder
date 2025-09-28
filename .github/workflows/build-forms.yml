@@ -31,18 +31,9 @@ jobs:
           gear=$(yq -o=json '.origins[].gear[]' .github/roster-config.yml | sort -u | jq -r '.' | sed 's/^/  - /')
 
           # Replace placeholders in template with arrays
-          sed -e "/{{origins}}/{
-            r /dev/stdin
-            d
-          }" <(echo "$origins") .github/ISSUE_TEMPLATE/_roster-template.yml \
-          | sed -e "/{{roles}}/{
-            r /dev/stdin
-            d
-          }" <(echo "$roles") \
-          | sed -e "/{{gear}}/{
-            r /dev/stdin
-            d
-          }" <(echo "$gear") \
+          sed -e "/{{origins}}/{ r /dev/stdin d }" <(echo "$origins") .github/ISSUE_TEMPLATE/_roster-template.yml \
+          | sed -e "/{{roles}}/{ r /dev/stdin d }" <(echo "$roles") \
+          | sed -e "/{{gear}}/{ r /dev/stdin d }" <(echo "$gear") \
           > .github/ISSUE_TEMPLATE/roster.yml
 
       - name: Commit updated form
@@ -51,4 +42,5 @@ jobs:
           git config user.email "actions@github.com"
           git add .github/ISSUE_TEMPLATE/roster.yml
           git commit -m "Update roster form with dynamic dropdowns" || echo "No changes to commit"
+          git pull --rebase origin main   # 👈 ensures fast-forward before pushing
           git push
