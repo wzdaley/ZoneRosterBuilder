@@ -1,7 +1,8 @@
-name: Build a Roster
+name: Build a Zone Roster
 description: Guided form to create your crew roster
 title: "[Roster]: <Crew Name>"
 labels: ["roster"]
+
 body:
   - type: input
     id: crew-name
@@ -15,12 +16,7 @@ body:
     id: campaign
     attributes:
       label: Campaign
-      description: Which campaign is this roster for?
-      options:
-        - CordonRun
-        - RedForest
-        - PripyatDreams
-        - CustomCampaign
+      options: {{campaigns}}
     validations:
       required: true
 
@@ -36,25 +32,15 @@ body:
     id: edge
     attributes:
       label: Edge
-      options:
-        - SEVA Brigade
-        - Artifact Attunement
-        - Psy Resonance
-        - Telekinetic Drift
-        - Synthetic Bodies
-        - War-Born
-        - Linked Comms
-        - Camaraderie
-        - Brutal Pragmatists
-        - Smuggler Network
-        - Mimics of the Zone
-        - Time Anomalies
-        - Chem-Dosed
-        - Parasitic Takeover
+      options: {{edges}}
     validations:
       required: true
 
-  # Crew slots (8 max, each with Role + Gear)
+  - type: markdown
+    attributes:
+      value: "## 👥 Crew Members"
+
+  # Crew Members (8 total, each with Role + Weapon)
   - type: dropdown
     id: crew-role-1
     attributes:
@@ -62,11 +48,12 @@ body:
       options: {{roles}}
     validations:
       required: true
+
   - type: dropdown
-    id: gear-1
+    id: weapon-1
     attributes:
-      label: Gear for Crew Member 1
-      options: {{gear}}
+      label: Crew Member 1 Weapon
+      options: {{weapons}}
     validations:
       required: true
 
@@ -77,93 +64,92 @@ body:
       options: {{roles}}
     validations:
       required: true
+
   - type: dropdown
-    id: gear-2
+    id: weapon-2
     attributes:
-      label: Gear for Crew Member 2
-      options: {{gear}}
+      label: Crew Member 2 Weapon
+      options: {{weapons}}
     validations:
       required: true
 
-  - type: dropdown
-    id: crew-role-3
+  # …repeat Role + Weapon for Crew Members 3–8
+
+  - type: markdown
     attributes:
-      label: Crew Member 3 Role
-      options: {{roles}}
-    validations:
-      required: true
+      value: "## 🎒 Shared Equipment Pool (3 total for the whole crew)"
+
+  # Equipment Slot 1
   - type: dropdown
-    id: gear-3
+    id: equipment-1
     attributes:
-      label: Gear for Crew Member 3
-      options: {{gear}}
+      label: Equipment Slot 1
+      options: {{equipment}}
     validations:
-      required: true
+      required: false
 
   - type: dropdown
-    id: crew-role-4
+    id: equipment-1-owner
     attributes:
-      label: Crew Member 4 Role
-      options: {{roles}}
+      label: Who carries Equipment Slot 1?
+      options:
+        - Crew Member 1
+        - Crew Member 2
+        - Crew Member 3
+        - Crew Member 4
+        - Crew Member 5
+        - Crew Member 6
+        - Crew Member 7
+        - Crew Member 8
     validations:
-      required: true
+      required: false
+
+  # Equipment Slot 2
   - type: dropdown
-    id: gear-4
+    id: equipment-2
     attributes:
-      label: Gear for Crew Member 4
-      options: {{gear}}
+      label: Equipment Slot 2
+      options: {{equipment}}
     validations:
-      required: true
+      required: false
 
   - type: dropdown
-    id: crew-role-5
+    id: equipment-2-owner
     attributes:
-      label: Crew Member 5 Role
-      options: {{roles}}
+      label: Who carries Equipment Slot 2?
+      options:
+        - Crew Member 1
+        - Crew Member 2
+        - Crew Member 3
+        - Crew Member 4
+        - Crew Member 5
+        - Crew Member 6
+        - Crew Member 7
+        - Crew Member 8
     validations:
-      required: true
+      required: false
+
+  # Equipment Slot 3
   - type: dropdown
-    id: gear-5
+    id: equipment-3
     attributes:
-      label: Gear for Crew Member 5
-      options: {{gear}}
+      label: Equipment Slot 3
+      options: {{equipment}}
     validations:
-      required: true
+      required: false
 
   - type: dropdown
-    id: crew-role-6
+    id: equipment-3-owner
     attributes:
-      label: Crew Member 6 Role
-      options: {{roles}}
+      label: Who carries Equipment Slot 3?
+      options:
+        - Crew Member 1
+        - Crew Member 2
+        - Crew Member 3
+        - Crew Member 4
+        - Crew Member 5
+        - Crew Member 6
+        - Crew Member 7
+        - Crew Member 8
     validations:
-      required: true
-  - type: dropdown
-    id: gear-6
-    attributes:
-      label: Gear for Crew Member 6
-      options: {{gear}}
-    validations:
-      required: true
-
-  - type: dropdown
-    id: crew-role-7
-    attributes:
-      label: Crew Member 7 Role
-      options: {{roles}}
-    validations:
-      required: true
-  - type: dropdown
-    id: gear-7
-    attributes:
-      label: Gear for Crew Member 7
-      options: {{gear}}
-    validations:
-      required: true
-
-  - type: dropdown
-    id: crew-role-8
-    attributes:
-      label: Crew Member 8 Role
-      options: {{roles}}
-    validations:
-      required: true
+      required: false
