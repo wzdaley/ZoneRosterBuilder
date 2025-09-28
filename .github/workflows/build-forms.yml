@@ -6,7 +6,7 @@ on:
       - .github/roster-config.yml
       - .github/ISSUE_TEMPLATE/_roster-template.yml
       - package.json
-      - package-lock.json
+      - yarn.lock
   workflow_dispatch:
 
 permissions:
@@ -24,17 +24,11 @@ jobs:
         with:
           node-version: 20
 
-      - name: Clean npm cache
-        run: npm cache clean --force
-
-      - name: Force npm registry
-        run: npm config set registry https://registry.npmjs.org/
-
-      - name: Install dependencies (force)
-        run: npm install --force --no-audit --no-fund
+      - name: Install dependencies with Yarn
+        run: yarn install --ignore-engines --network-timeout 600000
 
       - name: Generate roster.yml
-        run: npm run build-form
+        run: yarn build-form
 
       - name: Commit updated form
         run: |
