@@ -22,7 +22,7 @@ jobs:
           node-version: 20
 
       - name: Install deps
-        run: npm install js-yaml
+        run: npm install js-yaml ts-node
 
       - name: Generate roster.yml
         run: npx ts-node scripts/build-form.ts
@@ -32,6 +32,6 @@ jobs:
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add .github/ISSUE_TEMPLATE/roster.yml
-          git commit -m "Update roster form with dynamic dropdowns" || echo "No changes to commit"
+          git commit -m "Update roster form" || echo "No changes to commit"
           git pull --rebase origin main
           git push
