@@ -41,7 +41,7 @@ body:
     validations:
       required: true
 
-  # Crew slots (8 max)
+  # Crew slots (8 max, each with Role + Gear)
   - type: dropdown
     id: crew-role-1
     attributes:
@@ -72,14 +72,101 @@ body:
     validations:
       required: true
 
-  # …repeat crew-role-X and gear-X up to 8
+  - type: dropdown
+    id: crew-role-3
+    attributes:
+      label: Crew Member 3 Role
+      options: {{roles}}
+    validations:
+      required: true
+  - type: dropdown
+    id: gear-3
+    attributes:
+      label: Gear for Crew Member 3
+      options: {{gear}}
+    validations:
+      required: true
+
+  - type: dropdown
+    id: crew-role-4
+    attributes:
+      label: Crew Member 4 Role
+      options: {{roles}}
+    validations:
+      required: true
+  - type: dropdown
+    id: gear-4
+    attributes:
+      label: Gear for Crew Member 4
+      options: {{gear}}
+    validations:
+      required: true
+
+  - type: dropdown
+    id: crew-role-5
+    attributes:
+      label: Crew Member 5 Role
+      options: {{roles}}
+    validations:
+      required: true
+  - type: dropdown
+    id: gear-5
+    attributes:
+      label: Gear for Crew Member 5
+      options: {{gear}}
+    validations:
+      required: true
+
+  - type: dropdown
+    id: crew-role-6
+    attributes:
+      label: Crew Member 6 Role
+      options: {{roles}}
+    validations:
+      required: true
+  - type: dropdown
+    id: gear-6
+    attributes:
+      label: Gear for Crew Member 6
+      options: {{gear}}
+    validations:
+      required: true
+
+  - type: dropdown
+    id: crew-role-7
+    attributes:
+      label: Crew Member 7 Role
+      options: {{roles}}
+    validations:
+      required: true
+  - type: dropdown
+    id: gear-7
+    attributes:
+      label: Gear for Crew Member 7
+      options: {{gear}}
+    validations:
+      required: true
+
+  - type: dropdown
+    id: crew-role-8
+    attributes:
+      label: Crew Member 8 Role
+      options: {{roles}}
+    validations:
+      required: true
+  - type: dropdown
+    id: gear-8
+    attributes:
+      label: Gear for Crew Member 8
+      options: {{gear}}
+    validations:
+      required: true
 
   - type: dropdown
     id: secondary-agenda
     attributes:
       label: Secondary Agenda (Optional)
       options:
-        - None
         - Rescue
         - Artifact (Tech)
         - Biology
